@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tree</title>
+    <style>
+        body {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Trees in the Garden</h1>
+    <table border="1" cellspacing="0" width="1000">
+        <tr>
+            <td>
+                Index
+            </td>
+            <td>
+                Kind
+            </td>
+            <td>
+                Landing_day
+            </td>
+            <td>
+                Height
+            </td>
+            <td>
+                Width
+            </td>
+            <td>
+                Max weight fruit on tree
+            </td>
+            <td>
+                Amount of fruit
+            </td>
+            <td>
+                Fruits of tree
+            </td>
+
+        </tr>
+        {% for tree in trees %}
+        <tr>
+            <td>
+                {{ tree.index }}
+            </td>
+            <td>
+                {{ tree.kind }}
+            </td>
+            <td>
+                {{ tree.landing_day }}
+            </td>
+            <td>
+                {{ tree.height }}
+            </td>
+            <td>
+                {{ tree.width }}
+            </td>
+            <td>
+                {{ tree.max_weight_fruit_on_tree }}
+            </td>
+            <td>
+                {{ tree.amount_of_fruit }}
+            </td>
+            <td>
+                <a href="fruit_of_tree_{{tree.index}}">Fruits of this tree</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <h2><a href='/fruit/' >All fruits</a></h2>
+</body>
+</html>

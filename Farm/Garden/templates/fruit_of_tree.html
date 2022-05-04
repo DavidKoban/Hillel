@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fruits</title>
+    <style>
+        body {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Fruits on the Tree( {{ index_tree }} )</h1>
+     <table border="1" cellspacing="0" width="1000">
+        <tr>
+            <td>
+                Index
+            </td>
+            <td>
+                weight(kg)
+            </td>
+        </tr>
+        {% for fruit in fruits %}
+        <tr>
+            <td>
+                {{ fruit.index }}
+            </td>
+            <td>
+                {{ fruit.weight }}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <h2><a href='/tree/' >All trees</a></h2>
+    <h2><a href='/fruit/' >All fruits</a></h2>
+</body>
+</html>
