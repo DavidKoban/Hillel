@@ -16,13 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.views.generic.base import RedirectView
-from Garden.views import My_View_Tree, My_View_Fruit, Fruits_of_tree
+from Garden.views import TreeResponseView, FruitResponseView
 
 
 urlpatterns = [
     path('', RedirectView.as_view(url='tree/'),),
     path('admin/', admin.site.urls),
-    path('tree/', My_View_Tree.as_view(),),
-    path('tree/fruit_of_tree_<int:index>/', Fruits_of_tree.as_view(),),
-    path('fruit/', My_View_Fruit.as_view(),),
+    path('tree/', TreeResponseView.as_view(),),
+    path('fruit/', FruitResponseView.as_view(),),
 ]
