@@ -10,22 +10,32 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+import os
 from pathlib import Path
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+env = environ.Env(
+    DEBUG=(bool, False)
+)
+
+READ_DOT_ENV_FILE = env.bool('READ_DOT_ENV_FILE', default=False)
+if READ_DOT_ENV_FILE:
+    environ.Env.read_env()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-4w=$is0xd^877zn_ke!%-0)cu_drmei3r527u2yu$zv5m39b-b'
+
+SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env("DEBUG")
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = env("ALLOWED_HOSTS")
 
 
 # Application definition
@@ -37,9 +47,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'App_1',
+
+    'Sloter',
     'django_extensions',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -76,15 +88,9 @@ WSGI_APPLICATION = 'Auction.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'db',
-        'USER': 'postgres',
-        'PASSWORD': '0000',
-        'PASSWORD': '140405',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
+
+    'default': env.db(),
+
 }
 
 
@@ -128,3 +134,6 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOCALE_PATHS = (os.path.join(BASE_DIR, "locale"), )
+
