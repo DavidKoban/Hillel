@@ -15,7 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.urls import re_path, include
+from Sloter.views import RegistrationAPIView
+from Sloter.views import LoginAPIView
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    re_path(r'^registration/?$', RegistrationAPIView.as_view(), name='user_registration'),
+    re_path(r'^login/?$', LoginAPIView.as_view(), name='user_login'),
 ]
+
