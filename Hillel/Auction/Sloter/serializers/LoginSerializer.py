@@ -3,22 +3,12 @@ from rest_framework import serializers
 
 
 class LoginSerializer(serializers.Serializer):
-    """
-    Authenticates an existing user.
-    Email and password are required.
-    Returns a JSON web token.
-    """
     email = serializers.EmailField(write_only=True)
     password = serializers.CharField(max_length=128, write_only=True)
-
-    # Ignore these fields if they are included in the request.
     username = serializers.CharField(max_length=255, read_only=True)
     token = serializers.CharField(max_length=255, read_only=True)
 
     def validate(self, data):
-        """
-        Validates user data.
-        """
         email = data.get('email', None)
         password = data.get('password', None)
 

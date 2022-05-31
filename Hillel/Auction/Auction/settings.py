@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Sloter',
-    'django_extensions',
     'rest_framework',
 ]
 

@@ -1,6 +1,5 @@
 from .BasicModel import BasicModel
 from django.db import models
-from .User import User
 from django.conf import settings
 
 

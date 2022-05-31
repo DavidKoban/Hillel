@@ -25,13 +25,10 @@ class User(BasicModel, AbstractBaseUser, PermissionsMixin):
 
     is_active = models.BooleanField(default=True)
 
-    # Свойство `USERNAME_FIELD` сообщает нам, какое поле мы будем использовать для входа.
     USERNAME_FIELD = 'email'
 
     REQUIRED_FIELDS = ('username',)
 
-    # Сообщает Django, что класс UserManager, определенный выше,
-    # должен управлять объектами этого типа.
     objects = UserManager()
 
     @property
@@ -39,7 +36,7 @@ class User(BasicModel, AbstractBaseUser, PermissionsMixin):
         return self._generate_jwt_token()
 
     def _generate_jwt_token(self):
-        dt = datetime.now() + datetime.timedelta(days=60)
+        dt = timezone.now() + datetime.timedelta(days=60)
 
         token = jwt.encode({
             'id': self.pk,

@@ -26,8 +26,6 @@ class JWTAuthentication(authentication.BaseAuthentication):
         token = auth_header[1].decode('utf-8')
 
         if prefix.lower() != auth_header_prefix:
-            # The auth header prefix is not what we expected. Do not attempt to
-            # authenticate.
             return None
         return self._authenticate_credentials(request, token)
 

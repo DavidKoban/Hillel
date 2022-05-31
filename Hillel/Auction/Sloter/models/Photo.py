@@ -1,6 +1,5 @@
 from .BasicModel import BasicModel
 from django.db import models
-from .Slot import Slot
 
 
 class Photo(BasicModel):
