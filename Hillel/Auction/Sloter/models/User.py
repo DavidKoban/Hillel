@@ -16,8 +16,8 @@ class User(BasicModel, AbstractBaseUser, PermissionsMixin):
     username = models.CharField(db_index=True, max_length=255, unique=True, null=True)
     surname = models.CharField(null=False, max_length=50, default="Ivanov")
     patronymic = models.CharField(null=True, max_length=50, default="Ivanovich")
-    email = models.EmailField(null=False, default='owner@mail.com', unique=True)
-    birthday = models.DateField(null=False, default=timezone.now)
+    email = models.EmailField(null=False, unique=True)
+    birthday = models.DateField(null=True, blank=True)
     # phone_number = PhoneField(blank=True, E164_only=False, null=False, default='+12223334444')
     # Коммит нужный в дальнейшем это будет использовать, но возникла проблема, мы ее решим по мере разработки
 

@@ -22,7 +22,9 @@ from Sloter.views import LoginAPIView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    re_path(r'^registration/?$', RegistrationAPIView.as_view(), name='user_registration'),
-    re_path(r'^login/?$', LoginAPIView.as_view(), name='user_login'),
-]
+    re_path(r'^registration/$', RegistrationAPIView.as_view(), name='user_registration'),
+    re_path(r'^login/$', LoginAPIView.as_view(), name='user_login'),
 
+    re_path(r'^slot/<id:uuid>/$', SlotView.as_view(), name='slot'),
+    re_path(r'^slot/<id:uuid>/bets/$', BetView.as_view(), name='bets'),
+]
